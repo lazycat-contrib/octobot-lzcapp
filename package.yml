@@ -1,0 +1,18 @@
+package: community.lazycat.app.octobot
+name: OctoBot
+version: 2.1.1
+description: "Open-source cryptocurrency trading bot with a web interface: automated strategies, backtesting and paper trading."
+min_os_version: "1.5.0"
+homepage: https://github.com/Drakkar-Software/OctoBot
+author: Drakkar-Software
+license: "GPL-3.0"
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: OctoBot
+    description: "开源加密货币交易机器人：自动化策略、回测与模拟盘，带 Web 管理界面。"
+  en:
+    name: OctoBot
+    description: "Open-source crypto trading bot: automated strategies, backtesting and paper trading with a web UI."

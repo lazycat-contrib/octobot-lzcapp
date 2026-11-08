@@ -1,0 +1,40 @@
+application:
+  subdomain: octobot
+  multi_instance: false
+  # No public_path: OctoBot has no built-in login/account system, so the
+  # platform entry authentication stays the first line of defense
+  # (shimmy precedent 2026-11-04). Do not expose this service beyond
+  # the platform ingress.
+  upstreams:
+    - location: /package-licenses/
+      backend: file:///lzcapp/pkg/content/licenses/
+    - location: /
+      backend: http://octobot:5001/
+
+services:
+  octobot:
+    # upstream: drakkarsoftware/octobot:2.1.1
+    image: docker.1ms.run/drakkarsoftware/octobot:2.1.1
+    environment:
+      - TZ=Asia/Shanghai
+    binds:
+      # official compose mounts user / tentacles / logs / backtesting volumes
+      - /lzcapp/var/mutdata/user:/octobot/user
+      - /lzcapp/var/mutdata/tentacles:/octobot/tentacles
+      - /lzcapp/var/mutdata/logs:/octobot/logs
+usage: |
+  OctoBot 是一个开源的加密货币交易机器人：内置自动化策略、技术分析、
+  回测与模拟盘（paper trading），通过 Web 界面配置与监控。
+
+  使用方法：
+  1. 打开应用后，在 Web 界面按向导完成初始配置（profile / 交易所连接）。
+  2. 建议先用模拟盘（simulated）模式跑通策略，再考虑接入真实交易所 API key。
+  3. 交易所 API key 与全部数据保存在 /lzcapp/var/mutdata，卸载会一并删除。
+
+  说明：
+  - OctoBot 自身没有登录/账号体系，因此本包不使用 public_path，
+    由平台入口鉴权保护，请勿将服务端口额外对外开放。
+  - 本包仅开放主界面 5001 端口；上游的 5002-5010 为策略子界面端口，
+    如需使用可自行修改 manifest 增加 ingress。
+  - 本包未做实机验证，功能以官方文档为准：https://www.octobot.info/
+  - 许可证 GPL-3.0 随包分发，见 /package-licenses/。
