@@ -1,6 +1,6 @@
 package: community.lazycat.app.octobot
 name: OctoBot
-version: 2.1.1
+version: 2.1.13
 description: "Open-source cryptocurrency trading bot with a web interface: automated strategies, backtesting and paper trading."
 min_os_version: "1.5.0"
 homepage: https://github.com/Drakkar-Software/OctoBot

@@ -10,11 +10,10 @@ application:
       backend: file:///lzcapp/pkg/content/licenses/
     - location: /
       backend: http://octobot:5001/
-
 services:
   octobot:
-    # upstream: drakkarsoftware/octobot:2.1.1
-    image: docker.1ms.run/drakkarsoftware/octobot:2.1.1
+    # upstream: drakkarsoftware/octobot:2.1.13
+    image: docker.1ms.run/drakkarsoftware/octobot:2.1.13
     environment:
       - TZ=Asia/Shanghai
     binds:
